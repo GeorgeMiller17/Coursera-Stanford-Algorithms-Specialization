@@ -49,17 +49,6 @@ class Graph {
     }
     return [];
   }
-
-  dfs(start,results = []) {
-    results.push(start);
-    if (this.graph[start]) {
-    for (let node of this.graph[start]) {
-      if (results.indexOf(node)===-1) this.dfs(node,results);
-      }
-    }
-    return results;
-  }
-
 }
 
 
