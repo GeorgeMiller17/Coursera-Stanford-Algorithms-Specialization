@@ -16,11 +16,11 @@ class Graph {
       let node = queue.shift();
       let level = results[node].level;
       if (this.graph[node]) {
-        for (let child of this.graph[node]) {
-          if (!results[child]) {
-            results[child] = {level: level+1};
-            results['nodes'].push(child);
-            queue.push(child);
+        for (let next of this.graph[node]) {
+          if (!results[next]) {
+            results[next] = {level: level+1};
+            results['nodes'].push(next);
+            queue.push(next);
           }
         }
       }
@@ -37,14 +37,12 @@ class Graph {
     while(queue.length) {
       let node = queue.shift();
       if (this.graph[node]) {
-        for (let child of this.graph[node]) {
-          if (!tracks[child]) {
-            tracks[child] = tracks[node].slice();
-            tracks[child].push(parseInt(child));
-            if (parseInt(child) == end) {
-              return tracks[child];
-            }
-            queue.push(child);
+        for (let next of this.graph[node]) {
+          if (!tracks[next]) {
+            tracks[next] = tracks[node].slice();
+            tracks[next].push(parseInt(next));
+            if (parseInt(next) == end) return tracks[next];
+            queue.push(next);
           }
         }
       }
