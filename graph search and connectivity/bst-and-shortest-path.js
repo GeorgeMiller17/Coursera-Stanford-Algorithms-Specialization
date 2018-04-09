@@ -27,6 +27,31 @@ class Graph {
     }
     return results;
   }
+
+  shortestPath(start,end) {
+    if (!this.graph[start]||!this.graph[start].length) return [];
+    if (start === end) return [start];
+    const tracks = {[start] : [start]},
+          queue = [start],
+          result = [start];
+    while(queue.length) {
+      let node = queue.shift();
+      if (this.graph[node]) {
+        for (let child of this.graph[node]) {
+          if (!tracks[child]) {
+            tracks[child] = tracks[node].slice();
+            tracks[child].push(parseInt(child));
+            if (parseInt(child) == end) {
+              return tracks[child];
+            }
+            queue.push(child);
+          }
+        }
+      }
+    }
+    return [];
+  }
+
 }
 
 
@@ -38,6 +63,9 @@ g.addEdge('2', '5')
 g.addEdge('3', '5')
 g.addEdge('4', '6')
 g.addEdge('5', '6')
+
 console.log(g)
 var bfsPath = g.bfs('1')
 console.log(bfsPath);
+var shortestPath = g.shortestPath(1,5);
+console.log(shortestPath);
