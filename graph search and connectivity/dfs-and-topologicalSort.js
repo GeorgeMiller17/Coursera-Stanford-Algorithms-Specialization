@@ -1,4 +1,4 @@
-class graph {
+class Graph {
   constructor() {
     this.edges = {};
     this.vertices = [];
