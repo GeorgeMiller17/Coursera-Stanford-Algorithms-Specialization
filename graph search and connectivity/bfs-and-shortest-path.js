@@ -1,9 +1,12 @@
 class Graph {
   constructor() {
     this.graph = {};
+    this.vertices = [];
   }
 
   addEdge(u,v) {
+    this.vertices.indexOf(u)===-1 && this.vertices.push(u);
+    this.vertices.indexOf(v)===-1 && this.vertices.push(v);
     this.graph[u] ? this.graph[u].push(v) : this.graph[u] = [v];
   }
 
@@ -66,5 +69,3 @@ console.log(g)
 // console.log(bfsPath);
 // var shortestPath = g.shortestPath(1,5);
 // console.log(shortestPath);
-var dfsPath = g.dfs('1');
-console.log(dfsPath);
